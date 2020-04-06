@@ -61,7 +61,7 @@
                         [labels]="chartLabelsIncome"
                         [options]="chartOptionsIncome"
                         [legend]="true"
-                        (chartClick)="onChartClick($event)">
+                    >
                     </canvas>
             </div>
             <div *ngIf="!isChartIncome" class="blue-color text-center mx-auto" style="margin-top:40px;" >
@@ -78,7 +78,7 @@
                     [labels]="chartLabelsExpenditure"
                     [options]="chartOptionsExpenditure"
                     [legend]="true"
-                    (chartClick)="onChartClick($event)">
+                >
                 </canvas>
             </div>
             <div *ngIf="!isChartExpenditure" class="blue-color text-center" style="margin-top:40px;">
