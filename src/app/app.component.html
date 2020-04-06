@@ -1,0 +1,92 @@
+<nav  class="navbar navbar-dark bg-primary">
+    <div class="d-inline-block white-color">
+        <div>
+        <a class="navbar-brand" href="#">
+            <img src="assets/report.png" width="30" height="30" class="d-inline-block align-top" alt="">
+            <div class="d-inline-block">&nbsp; &nbsp;Report</div>
+        </a>
+        </div>
+        <div>{{navbarReportTitle}}</div>
+    </div>
+    
+    <form class="form-inline my-2 my-lg-0">
+        <button class="btn btn-dark my-2 my-sm-0"  (click)="btnClicked($event);">{{!localityPage?'Locality':'Pincode'}}</button>
+    </form>
+</nav>
+<div class="container-fluid">
+    <div class="row full-width-row">
+        <div class="col light-blue-bg" >
+            <div class="row row-cols-2 text-center row-properties" *ngIf="isPopupOpen">
+                <div class="col blue-color">
+                    <h4>{{properties?.population}}</h4>
+                </div>
+                <div class="col blue-color">
+                    <h4>{{properties?.households}}</h4>
+                </div>
+                <div class="col" *ngIf="properties?.population">
+                   <h6> Population</h6>
+                  </div>
+                <div class="col" *ngIf="properties?.households">
+                     <h6> Households</h6>
+                </div>
+            </div>
+            <div class="row row-cols-2 text-center row-properties white-bg blue-color" *ngIf="localityPage && isPopupOpen">
+                    <div class="col" *ngIf="properties?.locality">
+                       <p>Locality :<b>{{properties?.locality}}</b></p>
+                      </div>
+                    <div class="col" *ngIf="properties?.city">
+                       <p> City :<b>{{properties?.city}}</b></p>
+                    </div>
+            </div>
+            <div class="row row-cols-2 text-center row-properties white-bg blue-color" *ngIf="!localityPage && isPopupOpen">
+                <div class="col" *ngIf="properties?.district_n">
+                   <p>District :<b>{{properties?.district_n}}</b></p>
+                  </div>
+                <div class="col" *ngIf="properties?.district_n">
+                   <p> Country :<b>India</b></p>
+                </div>
+            </div>
+        </div>
+        <div class="col">
+            <div class="map" id="map" class="match-parent"></div>
+        </div>
+    </div>  
+    <div class="row row-cols-2 full-width-row">
+        <div class="col">
+            <div *ngIf="isChartIncome && localityPage">
+                    <canvas
+                        baseChart
+                        [chartType]="'doughnut'"
+                        [datasets]="chartDataIncome"
+                        [labels]="chartLabelsIncome"
+                        [options]="chartOptionsIncome"
+                        [legend]="true"
+                        (chartClick)="onChartClick($event)">
+                    </canvas>
+            </div>
+            <div *ngIf="!isChartIncome" class="blue-color text-center mx-auto" style="margin-top:40px;" >
+                   <h3>No Data Available</h3>
+                   <p>Monthly Income Distribution</p>
+            </div>
+        </div>
+        <div class="col">
+            <div *ngIf="isChartExpenditure">
+                <canvas
+                    baseChart
+                    [chartType]="'bar'"
+                    [datasets]="chartDataExpenditure"
+                    [labels]="chartLabelsExpenditure"
+                    [options]="chartOptionsExpenditure"
+                    [legend]="true"
+                    (chartClick)="onChartClick($event)">
+                </canvas>
+            </div>
+            <div *ngIf="!isChartExpenditure" class="blue-color text-center" style="margin-top:40px;">
+                    <h3>No Data Available</h3>
+                    <span>Expenditure </span><span *ngIf="properties?.pincode">for {{properties.pincode}}</span>
+             </div>
+        </div>
+    </div>
+</div>
+
+

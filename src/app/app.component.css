@@ -1,0 +1,29 @@
+.full-width-row {
+    overflow-x: hidden;
+  }
+  
+  .full-width-row > div {
+    margin-left: -15px;
+    margin-right: -15px;
+  }
+.light-blue-bg{
+    background:#d7f6ff;
+}
+.blue-color{
+    color: #36A2F9;
+}
+.white-color{
+    color: #ffffff;
+}
+.white-bg{
+    background:#ffffff;
+}
+.row.row-properties .col{
+    padding: 10px;
+}
+.match-parent{
+    width: 100%;
+    height: 500px;
+    font: 12px/20px 'Helvetica Neue', Arial, Helvetica, sans-serif;
+    }
+
